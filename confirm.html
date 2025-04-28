@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Just In The Box Confirmation</h1>
+        </header>
+        
+        <main>
+            <div class="confirmation-message">
+                <div class="icon-container">
+                    <i class="fas fa-check-circle fa-4x" style="color: #00b894;"></i>
+                </div>
+                <h1>Congratulations! 🎉</h1>
+                <h2>Welcome to the community, <span id="user-name"></span>!</h2>
+                <p class="success-text">We've successfully received your registration details.</p>
+                
+                <div class="summary-card">
+                    <h3>Your Details:</h3>
+                    <div id="query-params"></div>
+                </div>
+                
+                <p class="next-steps">Check your email for next steps →</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025, Justin Arias. This is a fictitious web page...</p>
+        </footer>
+    </div>
+
+    <script>
+        // Enhanced display script
+        const urlParams = new URLSearchParams(window.location.search);
+        const paramList = document.createElement('div');
+        paramList.className = 'param-grid';
+
+        // Add welcome name
+        if(urlParams.has('firstName')) {
+            document.getElementById('user-name').textContent = urlParams.get('firstName');
+        }
+
+        // Create parameter display
+        urlParams.forEach((value, key) => {
+            if(!['password1', 'password2'].includes(key)) {
+                const div = document.createElement('div');
+                div.className = 'param-item';
+                div.innerHTML = `
+                    <div class="param-key">${key.replace(/([A-Z])/g, ' $1').toUpperCase()}:</div>
+                    <div class="param-value">${value}</div>
+                `;
+                paramList.appendChild(div);
+            }
+        });
+
+        document.getElementById('query-params').appendChild(paramList);
+    </script>
+</body>
+</html>

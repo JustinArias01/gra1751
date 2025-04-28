@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Registration Form</h1>
+        </header>
+        
+        <main>
+            <form action="confirm.html" method="get" onsubmit="return validateForm()" novalidate>
+                <!-- Personal Information -->
+                <div class="form-group">
+                    <label for="firstName">First Name*</label>
+                    <input type="text" id="firstName" name="firstName" required 
+                           placeholder="First Name" title="Your first name is required">
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name*</label>
+                    <input type="text" id="lastName" name="lastName" required
+                           placeholder="Last Name" title="Your last name is required">
+                </div>
+
+                <!-- Contact Information -->
+                <div class="form-group">
+                    <label for="email">Email Address*</label>
+                    <input type="email" id="email" name="email" required
+                           placeholder="you@example.com" title="Your email is required">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number*</label>
+                    <input type="tel" id="phone" name="phone" required
+                           placeholder="(000) 000-0000" pattern="\(\d{3}\) \d{3}-\d{4}"
+                           title="Your phone number is required">
+                </div>
+
+                <!-- Password Section -->
+                <div class="form-group">
+                    <label for="password1">Password*</label>
+                    <input type="password" id="password1" name="password1" required
+                           placeholder="Password" pattern="[A-Za-z0-9]{8,10}"
+                           title="Password must consist of 8-10 letters and/or numbers">
+                </div>
+
+                <div class="form-group">
+                    <label for="password2">Confirm Password*</label>
+                    <input type="password" id="password2" name="password2" required
+                           placeholder="Confirm Password">
+                </div>
+
+                <!-- Delivery Method -->
+                <fieldset class="form-group">
+                    <legend>Delivery Method*</legend>
+                    <label><input type="radio" name="delivery" value="email" required> Email</label>
+                    <label><input type="radio" name="delivery" value="sms"> SMS</label>
+                </fieldset>
+
+                <!-- Birth Information -->
+                <div class="form-group">
+                    <label for="birthMonth">Birth Month</label>
+                    <select id="birthMonth" name="birthMonth">
+    <option value="">Select Month</option>
+    <option value="01">Jan</option>
+    <option value="02">Feb</option>
+    <option value="03">Mar</option>
+    <option value="04">Apr</option>
+    <option value="05">May</option>
+    <option value="06">Jun</option>
+    <option value="07">Jul</option>
+    <option value="08">Aug</option>
+    <option value="09">Sep</option>
+    <option value="10">Oct</option>
+    <option value="11">Nov</option>
+    <option value="12">Dec</option>
+</select>
+                </div>
+
+                <div class="form-group">
+                    <label for="zip">Zip Code*</label>
+                    <input type="text" id="zip" name="zip" required
+                           pattern="\d{5}" title="Five-digit zip code"
+                           placeholder="12345">
+                </div>
+
+                <!-- Terms & Conditions -->
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" required> 
+                        I accept the terms and conditions*
+                    </label>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </main>
+
+        <footer>
+            <p>© 2025, Justin Arias. This is a fictitious web page created solely for the purpose of education and training. All products and people associated with this web page are also fictitious. Any resemblance to real brands, products, or people is purely coincidental. Information provided about the product is also fictitious and should not be construed to be representative of actual products on the market in a similar product category.</p>
+        </footer>
+    </div>
+
+    <script>
+        function validateForm() {
+            const password1 = document.getElementById('password1');
+            const password2 = document.getElementById('password2');
+            let isValid = true;
+
+            // Clear previous errors
+            document.querySelectorAll('.error').forEach(el => el.remove());
+            document.querySelectorAll('.error-border').forEach(el => el.classList.remove('error-border'));
+
+            // Password pattern validation
+            const passwordPattern = /^[A-Za-z0-9]{8,10}$/;
+            if (!passwordPattern.test(password1.value)) {
+                showError(password1, 'Password must be 8-10 characters (letters/numbers only)');
+                isValid = false;
+            }
+
+            // Password match validation
+            if (password1.value !== password2.value) {
+                showError(password2, 'Passwords do not match');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function showError(input, message) {
+            const parent = input.parentElement;
+            const error = document.createElement('div');
+            error.className = 'error';
+            error.textContent = message;
+            parent.appendChild(error);
+            input.classList.add('error-border');
+        }
+    </script>
+</body>
+</html>

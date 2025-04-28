@@ -1,0 +1,220 @@
+/* Modern Color Scheme */
+:root {
+   --primary-color:   #4a90e2;
+   --secondary-color: #6c5ce7;
+   --success-color:   #00b894;
+   --error-color:     #d63031;
+   --text-color:      #2d3436;
+   --bg-color:        #f8f9fa;
+}
+
+
+
+/* Base Styles */
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.wrapper {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 2.5rem;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.wrapper:hover {
+    transform: translateY(-5px);
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+header h1 {
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin: 0 0 1rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+    outline: none;
+}
+
+/* Button Styles */
+button[type="submit"] {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+}
+
+/* Confirmation Page Styles */
+.confirmation-message {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.confirmation-message h1 {
+    color: var(--success-color);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.confirmation-message h2 {
+    color: var(--text-color);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+main {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Enhanced Error Styles */
+.error {
+    color: var(--error-color);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    padding-left: 0.5rem;
+    position: relative;
+}
+
+.error::before {
+    content: "⚠️ ";
+    margin-right: 0.3rem;
+}
+
+.error-border {
+    border-color: var(--error-color) !important;
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .wrapper {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+}
+
+/* Ensure full-width elements span all columns */
+fieldset.form-group,
+button[type="submit"] {
+    grid-column: 1 / -1;
+}
+
+/* Add this to prevent form groups from breaking */
+.form-group {
+    min-width: 0; /* Prevent grid blowout */
+}
+
+/* Improve radio button layout */
+fieldset label {
+    display: inline-block;
+    margin-right: 1.5rem;
+}
+/* Checkbox Styling */
+input[type="checkbox"] {
+    margin-right: 0.5rem;
+    transform: scale(1.2);
+}
+
+/* Delivery Method Styling */
+fieldset {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+legend {
+    padding: 0 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Month Select Styling */
+select {
+    appearance: none;
+    background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 1rem center/1rem;
+}
